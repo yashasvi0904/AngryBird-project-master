@@ -69,6 +69,12 @@ public class Gameplay2 implements Screen {
                     Body pigBody = (isPig(bodyA)) ? bodyA : bodyB;
                     pigsToDestroy.add(pigBody);
                 }
+                // A pig hit directly by a bird is destroyed too (matches Level 1).
+                if (isBird(bodyA) && isPig(bodyB)) {
+                    pigsToDestroy.add(bodyB);
+                } else if (isPig(bodyA) && isBird(bodyB)) {
+                    pigsToDestroy.add(bodyA);
+                }
             }
 
             @Override
@@ -399,11 +405,16 @@ public class Gameplay2 implements Screen {
             Body currentBird = birds.get(currentBirdIndex);
             if (currentBird.getLinearVelocity().len() < 20f) {
                 currentBirdIndex++;
+                // A bird has come to rest and is used up: consume one from the
+                // remaining-birds list. (Guarded so it never removes from an
+                // empty list, which previously froze the game.)
+                if (!panchi.isEmpty()) {
+                    panchi.remove(0);
+                }
                 if (currentBirdIndex < birds.size) {
                     resetBirdPosition();
                 }
             }
-            panchi.remove(0);
         }
         debugRenderer.render(world, camera.combined);
 
@@ -433,6 +444,10 @@ public class Gameplay2 implements Screen {
 
     private boolean isPigAndGroundCollision(Body bodyA, Body bodyB) {
         return (isPig(bodyA) && isGround(bodyB)) || (isPig(bodyB) && isGround(bodyA));
+    }
+
+    private boolean isBird(Body body) {
+        return body != null && body.getUserData() instanceof Sprite && birds.contains(body, true);
     }
 
     private boolean isPig(Body body) {
