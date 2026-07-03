@@ -19,16 +19,16 @@ body {
 	justify-content: center;
 }
 
-/* The game renders at a fixed 480x720. Scale that canvas up to the largest
-   480:720 box that fits the window, keeping the aspect ratio (no distortion).
+/* The game renders at 1920x1080 (16:9). Scale that canvas up to the largest
+   16:9 box that fits the window, keeping the aspect ratio (no distortion).
    The gdx GWT backend rescales pointer input to match, so clicks stay accurate.
    Target the visible game canvas (it has a tabindex); leave gdx's offscreen
    scratch canvas alone. */
 canvas[tabindex] {
 	display: block;
 	margin: auto;
-	width: min(100vw, 100vh * 480 / 720) !important;
-	height: min(100vh, 100vw * 720 / 480) !important;
+	width: min(100vw, 100vh * 1920 / 1080) !important;
+	height: min(100vh, 100vw * 1080 / 1920) !important;
 	box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
 }
 
