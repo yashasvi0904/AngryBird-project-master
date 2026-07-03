@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- GWT 2.11 ships no super-source for the jsinterop annotations, but the
+     gdx-backend-gwt reflection generator references them. This module makes the
+     vendored jsinterop.annotations sources translatable so GWT can compile. -->
+<module>
+	<source path="" />
+</module>

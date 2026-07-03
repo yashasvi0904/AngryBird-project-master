@@ -1,0 +1,15 @@
+# Render Blueprint — serves the pre-compiled browser build of the game.
+# The game is compiled locally with `./gradlew html:stageDocs`, which writes the
+# static site into ./docs (committed to the repo). Render just serves those files.
+services:
+  - type: web
+    name: angry-birds
+    runtime: static
+    # Files are pre-built and committed, so there is nothing to compile here.
+    buildCommand: echo "Serving pre-built static site from ./docs"
+    staticPublishPath: ./docs
+    pullRequestPreviewsEnabled: false
+    headers:
+      - path: /*
+        name: X-Frame-Options
+        value: SAMEORIGIN

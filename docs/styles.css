@@ -1,0 +1,48 @@
+html, body {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	background: #0e0e12;
+	color: #eaeaea;
+	font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+	overflow: hidden;
+}
+
+/* Center the game canvas that the gdx GWT backend injects into <body>. */
+body {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+body > canvas {
+	display: block;
+	max-width: 100vw;
+	max-height: 100vh;
+	box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+}
+
+#loading {
+	position: fixed;
+	inset: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+}
+
+.spinner {
+	width: 48px;
+	height: 48px;
+	margin-bottom: 16px;
+	border: 5px solid rgba(255, 255, 255, 0.15);
+	border-top-color: #e23b3b;
+	border-radius: 50%;
+	animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+	to { transform: rotate(360deg); }
+}

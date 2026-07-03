@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title>Angry Birds</title>
+	<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+	<div id="loading">
+		<div class="spinner"></div>
+		<p>Loading Angry Birds…</p>
+	</div>
+	<script type="text/javascript" src="html/html.nocache.js"></script>
+	<script type="text/javascript">
+		// The gdx GWT backend injects a <canvas> into the page once the game
+		// has loaded. Hide the loading indicator as soon as that happens.
+		var _obs = new MutationObserver(function () {
+			if (document.querySelector('canvas')) {
+				var l = document.getElementById('loading');
+				if (l) { l.style.display = 'none'; }
+				_obs.disconnect();
+			}
+		});
+		_obs.observe(document.body, { childList: true, subtree: true });
+	</script>
+</body>
+</html>

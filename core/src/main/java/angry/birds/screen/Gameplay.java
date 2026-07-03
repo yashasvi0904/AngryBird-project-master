@@ -403,7 +403,7 @@ public class Gameplay implements Screen {
                     resetBirdPosition();
                 }
             }
-            panchi.removeFirst();
+            panchi.remove(0);
         }
         debugRenderer.render(world, camera.combined);
 

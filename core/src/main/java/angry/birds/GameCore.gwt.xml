@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module>
+	<!-- Makes all of the game's core sources (angry.birds and angry.birds.screen)
+	     visible to the GWT compiler so they can be translated to JavaScript. -->
+	<source path="" />
+</module>
