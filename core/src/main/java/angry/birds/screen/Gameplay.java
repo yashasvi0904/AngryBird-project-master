@@ -399,11 +399,16 @@ public class Gameplay implements Screen {
             Body currentBird = birds.get(currentBirdIndex);
             if (currentBird.getLinearVelocity().len() < 20f) {
                 currentBirdIndex++;
+                // A bird has come to rest and is used up: consume one from the
+                // remaining-birds list. (Guarded so it never removes from an
+                // empty list, which previously froze the game.)
+                if (!panchi.isEmpty()) {
+                    panchi.remove(0);
+                }
                 if (currentBirdIndex < birds.size) {
                     resetBirdPosition();
                 }
             }
-            panchi.remove(0);
         }
         debugRenderer.render(world, camera.combined);
 
