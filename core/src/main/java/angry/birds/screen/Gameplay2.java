@@ -451,14 +451,11 @@ public class Gameplay2 implements Screen {
     }
 
     private boolean isPig(Body body) {
-        // Make sure user data is set and we have a valid reference
-        Object userData = body.getUserData();
-        if (userData instanceof Sprite) {
-            Sprite sprite = (Sprite) userData;
-            // Use texture name or other identifier to check for pig
-            return sprite.getTexture().toString().contains("pig");
-        }
-        return false;
+        // Identify pigs by membership in the pigs list. (Previously this checked
+        // the texture filename via Texture.toString(), which returns the path on
+        // desktop but NOT in the GWT/browser backend, so pigs were never detected
+        // there and could never be destroyed -> the win screen never showed.)
+        return body != null && pigs.contains(body);
     }
 
     private boolean isGround(Body body) {
